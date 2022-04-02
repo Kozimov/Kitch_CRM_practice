@@ -24,7 +24,12 @@
     <h1>Kitchen CRM mijozlar</h1>
     
     {% for lead in leads %}
-        <div class="mijoz">{{ lead.ismi }} {{ lead.familiyasi }} {{ lead.yoshi }}</div>
+        <div class="mijoz">
+            <a href="/leads/{{ lead.pk }}">
+                {{ lead.ismi }} {{ lead.familiyasi }} 
+            </a>
+            {{ lead.yoshi }}
+        </div>
     {% endfor %} 
 
 </body>
