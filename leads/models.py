@@ -12,7 +12,7 @@ class Lead(models.Model):
     waiter = models.ForeignKey("Waiter", on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.ismi
+        return str(self.ismi)
 
 class Waiter(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
