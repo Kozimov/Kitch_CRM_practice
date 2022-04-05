@@ -41,7 +41,7 @@ def lead_update(request, pk):
             return redirect("/leads")
     context = {
         "form": form,
-        "lead": lead
+        "lead": lead 
     }
     return render(request, "update.html", context)
 
