@@ -30,3 +30,10 @@ def lead_create(request):
         "forms": form
     }
     return render(request, "create.html", context)
+
+def lead_update(request, pk):
+    lead = Lead.objects.get(id=pk)
+    context = {
+        "lead": lead
+    }
+    return render(request, "update.html", context)
