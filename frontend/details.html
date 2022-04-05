@@ -14,7 +14,11 @@
 
     <h1>Ismi: {{ lead.ismi }}</h1>
     <h1>Familiyasi: {{ lead.familiyasi }}</h1>
-    <h1>Yoshi: {{ lead.yoshi }}</h1>
+    <h1>Yoshi: {{ lead.yoshi }}</h1> 
+
+    <a href="/leads/{{ lead.pk }}/update">Change</a>
+    <hr>
+    <a href="/leads/{{ lead.pk }}/delete">delete</a>
         
 
 </body>
