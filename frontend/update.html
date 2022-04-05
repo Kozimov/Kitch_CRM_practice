@@ -10,11 +10,11 @@
     
     <a href="/leads">Mijozlar bo'limi</a>
 
-    <h1>Mijoz update: {{ lead.ismi }}</h1>
+    <h1>Mijoz update:</h1>
 
     <form method="post">
         {% csrf_token %}
-        {{ forms.as_p }}
+        {{ form.as_p }}
         <button type="submit">Send</button>
     </form>
 
