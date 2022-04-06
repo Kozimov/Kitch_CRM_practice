@@ -6,12 +6,12 @@
 
     <a href="/leads/">Mijozlar bo'limi</a>
 
-    <h1>Mijoz yaratish</h1>
+    <h1>Mijozni o'chirishga rozimisiz?</h1>
     <form method="post">
         <p>
         {% csrf_token %} 
         {{ form.as_p }}
-        <button type="submit">Jo'natish</button>
+        <button type="submit">Delete</button>
     </form>
 
 {% endblock %}
