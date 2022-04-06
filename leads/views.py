@@ -33,7 +33,7 @@ class LeadUpdateView(UpdateView):
 
     def get_success_url(self):
         return reverse("leads:lists")
-
+ 
 class LeadDeleteView(DeleteView):
     template_name = "delete.html"
     queryset = models.Lead.objects.all()
