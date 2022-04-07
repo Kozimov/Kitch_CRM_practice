@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %} KitchekCRM Login {% endblock %}
+
+{% block content %}
+
+    <form method="post">
+        <p>
+        {% csrf_token %} 
+        {{ form.as_p }}
+        <button type="submit">Login</button>
+    </form>
+
+{% endblock %}
