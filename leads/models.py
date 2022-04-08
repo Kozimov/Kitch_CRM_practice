@@ -4,6 +4,11 @@ from django.contrib.auth.models import AbstractUser
 class User(AbstractUser):
     pass
 
+class UserProfil(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return str(self.user.username)
 
 class Lead(models.Model):
     ismi = models.CharField(max_length=20)
@@ -16,6 +21,7 @@ class Lead(models.Model):
 
 class Waiter(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    profil = models.ForeignKey(UserProfil, on_delete=models.CASCADE)
 
     def __str__(self):
         return str(self.user)
