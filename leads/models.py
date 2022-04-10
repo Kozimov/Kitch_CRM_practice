@@ -19,6 +19,7 @@ class Lead(models.Model):
 
     def __str__(self):
         return str(self.ismi)
+        
 
 class Waiter(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
