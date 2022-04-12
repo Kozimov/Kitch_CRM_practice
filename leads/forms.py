@@ -1,4 +1,3 @@
-from dataclasses import fields
 from django import forms
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm, UsernameField
@@ -13,7 +12,7 @@ class LeadModelForm(forms.ModelForm):
             "ismi",
             "familiyasi",
             "yoshi",
-            "waiter",
+            "agent"
         )
 
 class LeadForm(forms.Form):
