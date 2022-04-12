@@ -1,6 +1,9 @@
+import random
+from urllib import request
 from django.views import generic
 from django.shortcuts import reverse
-from leads.models import Agent
+from django.core.mail import send_mail
+from leads.models import Agent, UserProfile
 from .mixins import OrganisorAndLoginRequiredMixin
 from .forms import AgentModelForm
 
@@ -19,9 +22,22 @@ class AgentCreateView(OrganisorAndLoginRequiredMixin, generic.CreateView):
         return reverse("agents:agent-list")
     
     def form_valid(self, form):
-        agent = form.save(commit=False)
-        agent.organisation = self.request.user.userprofile
-        agent.save()
+        user = form.save(commit=False)
+        user.is_organisor = False
+        user.is_agent = True
+        user.set_password(f"{random.randint(0, 1000)}")
+        user.save()
+        Agent.objects.create(
+            user = user,
+            organisation = self.request.user.userprofile
+        )
+        send_mail(
+            subject="Bu Agent yaratilingan",
+            message="Yangi Agent yaratilgan",
+            from_email="test@test.com",
+            recipient_list=[user.email],
+        )
+        # agent.organisation = self.request.user.userprofile
         return super(AgentCreateView, self).form_valid(form)
 
 class AgentDetailView(OrganisorAndLoginRequiredMixin, generic.DetailView):
