@@ -1,4 +1,5 @@
 from multiprocessing import context
+from unicodedata import category
 from django.core.mail import send_mail
 from django.shortcuts import reverse
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -104,6 +105,24 @@ class AgentAssignView(OrganisorAndLoginRequiredMixin, FormView):
 class CategoryListView(LoginRequiredMixin, ListView):
     template_name = "leads/categories.html"
     context_object_name = "categories"
+
+    def get_context_data(self, **kwargs):
+        context = super(CategoryListView, self).get_context_data(**kwargs)
+        user = self.request.user
+
+        if user.is_organisor:
+            queryset = Lead.objects.filter(
+                organisation = user.userprofile,
+            )
+        else:
+            queryset = Category.objects.filter(
+                organisation = user.agent.organisation
+            )
+
+        context.update({
+                "unassigned_category_count": queryset.filter(category__isnull=True).count()
+            })
+        return context
 
     def get_queryset(self):
         user = self.request.user
